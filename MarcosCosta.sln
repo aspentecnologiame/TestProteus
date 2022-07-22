@@ -11,23 +11,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{1D03E762
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{B0AB5AD8-19C9-4F02-BE13-C14CAACA3C82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.WorkerService", "src\MarcosCosta.WorkerService\MarcosCosta.WorkerService.csproj", "{F41B6EB7-8060-43F6-82B3-14A82472CB90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.WorkerService", "src\MarcosCosta.WorkerService\MarcosCosta.WorkerService.csproj", "{F41B6EB7-8060-43F6-82B3-14A82472CB90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.Front", "src\MarcosCosta.Front\MarcosCosta.Front.csproj", "{BA5084E2-B870-49BA-A1A2-33782AF81690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.Front", "src\MarcosCosta.Front\MarcosCosta.Front.csproj", "{BA5084E2-B870-49BA-A1A2-33782AF81690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.Service", "src\MarcosCosta.Service\MarcosCosta.Service.csproj", "{DEE7FEE0-5BE9-46B3-88F8-3CD3B2D5DBA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.Service", "src\MarcosCosta.Service\MarcosCosta.Service.csproj", "{DEE7FEE0-5BE9-46B3-88F8-3CD3B2D5DBA6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C5BF69D0-E841-4A2D-81F4-568FCB74BA87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.CrossCutting", "src\MarcosCosta.CrossCutting\MarcosCosta.CrossCutting.csproj", "{D565DFFB-DB31-4510-A018-47122D9A77B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.CrossCutting", "src\MarcosCosta.CrossCutting\MarcosCosta.CrossCutting.csproj", "{D565DFFB-DB31-4510-A018-47122D9A77B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.Repository", "src\MarcosCosta.Repository\MarcosCosta.Repository.csproj", "{6A3825B6-232A-4DEA-8462-4FA03F72C476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.Repository", "src\MarcosCosta.Repository\MarcosCosta.Repository.csproj", "{6A3825B6-232A-4DEA-8462-4FA03F72C476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.Domain", "src\MarcosCosta.Domain\MarcosCosta.Domain.csproj", "{BD1DDBAA-7862-48F1-AC4E-139E70995214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.Domain", "src\MarcosCosta.Domain\MarcosCosta.Domain.csproj", "{BD1DDBAA-7862-48F1-AC4E-139E70995214}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{0792A4F4-7303-4B3D-AD2F-F1426F28BDEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.WebApi", "src\MarcosCosta.WebApi\MarcosCosta.WebApi.csproj", "{833E428A-9788-42F6-841B-C6EC22DDDC9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcosCosta.WebApi", "src\MarcosCosta.WebApi\MarcosCosta.WebApi.csproj", "{833E428A-9788-42F6-841B-C6EC22DDDC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcosCosta.Repository.Externals", "src\MarcosCosta.Repository.Externals\MarcosCosta.Repository.Externals.csproj", "{8D2FD3A5-E883-42A3-A205-15FCBA828BBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{833E428A-9788-42F6-841B-C6EC22DDDC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{833E428A-9788-42F6-841B-C6EC22DDDC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{833E428A-9788-42F6-841B-C6EC22DDDC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2FD3A5-E883-42A3-A205-15FCBA828BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2FD3A5-E883-42A3-A205-15FCBA828BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2FD3A5-E883-42A3-A205-15FCBA828BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2FD3A5-E883-42A3-A205-15FCBA828BBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{6A3825B6-232A-4DEA-8462-4FA03F72C476} = {1D03E762-BB8D-4E1A-A7A1-BD6EB7FA0C01}
 		{BD1DDBAA-7862-48F1-AC4E-139E70995214} = {C5BF69D0-E841-4A2D-81F4-568FCB74BA87}
 		{833E428A-9788-42F6-841B-C6EC22DDDC9C} = {0792A4F4-7303-4B3D-AD2F-F1426F28BDEE}
+		{8D2FD3A5-E883-42A3-A205-15FCBA828BBF} = {1D03E762-BB8D-4E1A-A7A1-BD6EB7FA0C01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D0BFD83-B71D-48D5-AFF8-0A757C50F9E9}

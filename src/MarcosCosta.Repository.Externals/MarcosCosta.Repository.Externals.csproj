@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -14,11 +14,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\MarcosCosta.Domain\MarcosCosta.Domain.csproj" />
-	  <ProjectReference Include="..\MarcosCosta.Repository.Externals\MarcosCosta.Repository.Externals.csproj" />
-	  <ProjectReference Include="..\MarcosCosta.Repository\MarcosCosta.Repository.csproj" />
-	  <ProjectReference Include="..\MarcosCosta.Service\MarcosCosta.Service.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MarcosCosta.Domain\MarcosCosta.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

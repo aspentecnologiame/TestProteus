@@ -31,7 +31,7 @@
                 enableFullRowSelection: true,
                 enableRowSelection: true,
                 multiSelect: false,
-                paginationPageSizes: [20, 50, 100],
+                paginationPageSizes: [50, 100],
                 paginationPageSize: 50,
                 columnDefs: homeFactory.ColumnDefs
             };
