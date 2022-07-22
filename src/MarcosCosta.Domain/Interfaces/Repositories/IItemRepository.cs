@@ -10,6 +10,6 @@ namespace MarcosCosta.Domain.Interfaces.Repositories
     public interface IItemRepository
     {
         Task<bool> ClearItem();
-        Task<bool> Insert(ItemEntity itemEntity);
+        Task<bool> Insert(IEnumerable<ItemEntity> itemsEntity);
     }
 }

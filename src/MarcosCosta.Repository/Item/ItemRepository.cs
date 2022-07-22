@@ -5,6 +5,7 @@ using MarcosCosta.Repository.Base;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -24,20 +25,30 @@ namespace MarcosCosta.Repository.Item
                 return await connection.ExecuteAsync(ItemRepositoryCommands.ClearItem) == -1;
         }
 
-        public async Task<bool> Insert(ItemEntity itemEntity)
+        public async Task<bool> Insert(IEnumerable<ItemEntity> itemsEntity)
         {
-            using (var connection = new SqlConnection(_connectionString))
-                return await connection.ExecuteAsync(ItemRepositoryCommands.Insert, new
+
+            ParallelOptions parallelOptions = new() { MaxDegreeOfParallelism = 10 };
+
+            await Parallel.ForEachAsync(itemsEntity, parallelOptions, async (itemEntity, token) =>
+            {
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    Id = Guid.NewGuid(),
-                    itemEntity.RDFId,
-                    itemEntity.About,
-                    itemEntity.Date,
-                    itemEntity.Description,
-                    itemEntity.Link,
-                    itemEntity.Title,
-                    Created = DateTime.Now
-                }) == 1;
+                    await connection.ExecuteAsync(ItemRepositoryCommands.Insert, new
+                    {
+                        Id = Guid.NewGuid(),
+                        itemEntity.RDFId,
+                        itemEntity.About,
+                        itemEntity.Date,
+                        itemEntity.Description,
+                        itemEntity.Link,
+                        itemEntity.Title,
+                        Created = DateTime.Now
+                    });
+                }
+            });
+
+            return await Task.FromResult(true);
         }
     }
 }

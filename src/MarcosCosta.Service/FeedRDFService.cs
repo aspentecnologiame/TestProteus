@@ -48,7 +48,7 @@ namespace MarcosCosta.Service
 
                 await _channelRepository.Insert(channelEntity);
                 itemsEntity.ToList().ForEach(i => i.RDFId = channelEntity.Id);
-                await _itemRepository.Insert(itemsEntity.First());
+                await _itemRepository.Insert(itemsEntity);
 
                 _logger.LogInformation("Processo de importação de feed concluído com sucesso!");
 

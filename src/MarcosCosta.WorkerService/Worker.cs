@@ -35,7 +35,7 @@ namespace MarcosCosta.WorkerService
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            serviceCollection.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Trace));
+            serviceCollection.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Information));
 
             serviceCollection.AddSingleton<ImportFeedRDFJob>();
             DIBootstrap.Configure(serviceCollection, Configuration);
