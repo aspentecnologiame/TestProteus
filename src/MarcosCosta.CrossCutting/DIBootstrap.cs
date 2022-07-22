@@ -21,6 +21,7 @@ namespace MarcosCosta.CrossCutting
             services.AddSingleton<IFeedRDFRepository, FeedRDFRepository>();
             services.AddSingleton<IChannelRepository, ChannelRepository>(provider => new ChannelRepository(configuration));
             services.AddSingleton<IItemRepository, ItemRepository>(provider => new ItemRepository(configuration));
+
             services.Configure<AppSettings>(options =>
             {
                 configuration.GetSection("AppSettings").Bind(options);

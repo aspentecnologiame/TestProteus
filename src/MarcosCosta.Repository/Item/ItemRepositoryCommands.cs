@@ -9,5 +9,8 @@ namespace MarcosCosta.Repository.Item
     public static class ItemRepositoryCommands
     {
         public const string ClearItem = @"TRUNCATE TABLE [Item]";
+
+        public const string Insert = @"INSERT INTO [Item] ([Id], [RDFId], [About], [Date], [Description], [Link], [Title], [Created], [Updated])
+                                                    VALUES (@Id, @RDFId, @About, @Date, @Description, @Link, @Title, @Created, NULL)";
     }
 }

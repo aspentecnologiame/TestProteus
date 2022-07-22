@@ -11,5 +11,6 @@ namespace MarcosCosta.Domain.Interfaces.Repositories
     {
         Task<bool> ClearChannel();
         Task<ChannelEntity> Get();
+        Task<bool> Insert(ChannelEntity channelEntity);
     }
 }

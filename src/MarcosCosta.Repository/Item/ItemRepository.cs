@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MarcosCosta.Domain.Entities;
 using MarcosCosta.Domain.Interfaces.Repositories;
 using MarcosCosta.Repository.Base;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,22 @@ namespace MarcosCosta.Repository.Item
         {
             using (var connection = new SqlConnection(_connectionString))
                 return await connection.ExecuteAsync(ItemRepositoryCommands.ClearItem) == -1;
+        }
+
+        public async Task<bool> Insert(ItemEntity itemEntity)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+                return await connection.ExecuteAsync(ItemRepositoryCommands.Insert, new
+                {
+                    Id = Guid.NewGuid(),
+                    itemEntity.RDFId,
+                    itemEntity.About,
+                    itemEntity.Date,
+                    itemEntity.Description,
+                    itemEntity.Link,
+                    itemEntity.Title,
+                    Created = DateTime.Now
+                }) == 1;
         }
     }
 }

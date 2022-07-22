@@ -23,6 +23,23 @@ namespace MarcosCosta.Repository.Channel
         {
             using (var connection = new SqlConnection(_connectionString))
                 return await connection.QueryFirstOrDefaultAsync(ChannelRepositoryCommands.Get);
-        } 
+        }
+
+        public async Task<bool> Insert(ChannelEntity channelEntity)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+                return await connection.ExecuteAsync(ChannelRepositoryCommands.Insert, new
+                {
+                    channelEntity.Id,
+                    channelEntity.About,
+                    channelEntity.Date,
+                    channelEntity.Description,
+                    channelEntity.Link,
+                    channelEntity.Language,
+                    channelEntity.Rights,
+                    channelEntity.Title,
+                    Created = DateTime.Now
+                }) == 1;
+        }
     }
 }

@@ -13,6 +13,6 @@ namespace MarcosCosta.Repository.Channel
         public const string Get = @"SELECT [Id], [About], [Date], [Description], [Language], [Link], [Rights], [Title], [Created], [Updated] FROM [Channel]";
 
         public const string Insert = @"INSERT INTO [Channel] ([Id], [About], [Date], [Description], [Language], [Link], [Rights], [Title], [Created], [Updated])
-                                               VALUES (@Id, @About, @Date, @Description, @Language, @Link, @Rights, @Title, @Created, @Updated])";
+                                               VALUES (@Id, @About, @Date, @Description, @Language, @Link, @Rights, @Title, @Created, NULL)";
     }
 }

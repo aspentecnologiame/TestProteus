@@ -4,6 +4,7 @@ using MarcosCosta.Domain.Interfaces.Repositories;
 using MarcosCosta.Domain.Interfaces.Repositories.Externals;
 using MarcosCosta.Domain.Interfaces.Services;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace MarcosCosta.Service
 {
@@ -28,10 +29,7 @@ namespace MarcosCosta.Service
             {
                 IMapper _mapper;
 
-                _logger.LogInformation("Iniciando o clear repositories!");
-
-                await _itemRepository.ClearItem();
-                await _channelRepository.ClearChannel();
+                _logger.LogInformation("Obtendo os feeds!");
 
                 var rdf = await _feedRDFRepository.ImportFeeds();
 
@@ -41,11 +39,24 @@ namespace MarcosCosta.Service
                 _mapper = AutoMapperConfigurations.ItemMapperConfig;
                 var itemsEntity = _mapper.Map<IEnumerable<item>, IEnumerable<ItemEntity>>(rdf.item);
 
+                _logger.LogInformation("Iniciando o clear repositories!");
+
+                await _itemRepository.ClearItem();
+                await _channelRepository.ClearChannel();
+
+                _logger.LogInformation("Inserindo feeds na base!");
+
+                await _channelRepository.Insert(channelEntity);
+                itemsEntity.ToList().ForEach(i => i.RDFId = channelEntity.Id);
+                await _itemRepository.Insert(itemsEntity.First());
+
+                _logger.LogInformation("Processo de importação de feed concluído com sucesso!");
+
                 return await Task.FromResult(true);
             }
             catch(Exception ex)
             {
-                _logger.LogWarning($"Error: {ex.Message}\n InnerException: {ex.InnerException}");
+                _logger.LogError($"Error: {ex.Message}\n InnerException: {ex.InnerException}");
                 throw new Exception(ex.Message);
             }
         }

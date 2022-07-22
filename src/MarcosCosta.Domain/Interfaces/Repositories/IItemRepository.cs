@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarcosCosta.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace MarcosCosta.Domain.Interfaces.Repositories
     public interface IItemRepository
     {
         Task<bool> ClearItem();
+        Task<bool> Insert(ItemEntity itemEntity);
     }
 }
