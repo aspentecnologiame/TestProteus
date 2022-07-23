@@ -14,6 +14,7 @@
 
         function setFunctions() {
             service.GetGridInfos = getGridInfos;
+            service.GetFeeds = getFeeds;
         }
 
         function getGridInfos() {
@@ -34,6 +35,30 @@
             }
 
             function gridInfosFailed(error) {
+                deferred.reject(error.data);
+            }
+
+            return deferred.promise;
+        }
+
+        function getFeeds() {
+
+            var deferred = $q.defer();
+
+            var url = 'feed-rdf/feeds';
+            var verb = 'GET';
+
+            var request = global.CreateRequest(url, verb);
+
+            $http(request)
+                .then(feedSuccess)
+                .catch(feedFailed);
+
+            function feedSuccess(response) {
+                deferred.resolve(response);
+            }
+
+            function feedFailed(error) {
                 deferred.reject(error.data);
             }
 

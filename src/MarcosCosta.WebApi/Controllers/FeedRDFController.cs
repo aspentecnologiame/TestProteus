@@ -18,9 +18,9 @@ namespace MarcosCosta.WebApi.Controllers
 
         [HttpGet("feeds")]
         [Authorize]
-        public async Task<IActionResult> Get([FromQuery] Guid feedRDFId)
+        public async Task<IActionResult> Get()
         {
-            var respponse = await _feedRDFService.GetFeedRDFById(feedRDFId);
+            var respponse = await _feedRDFService.GetFeeds(); ;
             return await Task.FromResult(Ok(respponse));
         }
     }

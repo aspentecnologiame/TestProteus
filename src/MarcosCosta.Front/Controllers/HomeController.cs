@@ -1,5 +1,7 @@
-﻿using MarcosCosta.Front.Models;
+﻿using MarcosCosta.Domain.Options;
+using MarcosCosta.Front.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
 namespace MarcosCosta.Front.Controllers
@@ -7,14 +9,16 @@ namespace MarcosCosta.Front.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly AppSettings _appSettings;
+        public HomeController(ILogger<HomeController> logger, IOptions<AppSettings> options)
         {
             _logger = logger;
+            _appSettings = options.Value;
         }
 
         public IActionResult Index()
         {
+            ViewBag.BearerToken = _appSettings.BearerToken;
             return View();
         }
 

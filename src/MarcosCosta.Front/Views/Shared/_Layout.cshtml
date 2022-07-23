@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MarcosCosta.Front.styles.css" asp-append-version="true" />
+
+    <script>localStorage.setItem('token', '@ViewBag.BearerToken');</script>
 </head>
 <body>
     <div ng-controller="layoutController as layoutCtrl">

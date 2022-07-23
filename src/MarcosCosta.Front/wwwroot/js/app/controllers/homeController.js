@@ -4,16 +4,6 @@
 
     angular.module('marcosCostaApp').controller('homeController', layoutController);
 
-    angular.module('marcosCostaApp').filter('mapGender', function () {
-        return function (input) {
-            if (input === null || input === undefined) {
-                return new Object();
-            } else {
-                return input.gender;
-            }
-        };
-    })
-
     layoutController.$inject = ['$rootScope', 'homeService', 'homeFactory'];
 
     function layoutController($rootScope, homeService, homeFactory) {
@@ -40,12 +30,11 @@
                 vm.gridApi = gridApi;
             };
 
-            homeService.GetGridInfos().then(function (response) {
+            homeService.GetFeeds().then(function (response) {
 
-                var data = response.Data;
-                vm.gridOptions.data = data;
-                for (var i = 0; i < data.length; i++)
-                    data[i].gender = data[i].gender === 'male' ? { id: 0, gender: 'male' } : { id: 1, gender: 'female' };
+                var data = response.data;
+                vm.gridOptions.data = data.items;
+                vm.channel = data.channel;
 
             }, function (error) {
                 console.log(error);

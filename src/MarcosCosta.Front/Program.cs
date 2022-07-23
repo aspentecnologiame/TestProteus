@@ -1,7 +1,15 @@
+using MarcosCosta.Domain.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+ConfigurationManager configuration = builder.Configuration;
+builder.Services.Configure<AppSettings>(options =>
+{
+    configuration.GetSection("AppSettings").Bind(options);
+});
 
 var app = builder.Build();
 

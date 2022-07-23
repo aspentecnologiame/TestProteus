@@ -27,11 +27,12 @@ namespace MarcosCosta.Service
             _memoryCache = memoryCache;
         }
 
-        public async Task<RDFEntity> GetFeedRDFById(Guid feedRDFId)
+        public async Task<RDFEntity> GetFeeds()
         {
             try
             {
-                var key = $"rdf-{feedRDFId}";
+                var channel = await _channelRepository.Get();
+                var key = $"rdf-{channel.Id}";
 
                 var rdfEntity = _memoryCache.Get<RDFEntity>(key);
 
@@ -39,8 +40,8 @@ namespace MarcosCosta.Service
                 {
                     rdfEntity = new RDFEntity
                     {
-                        Channel = await _channelRepository.GetById(feedRDFId),
-                        Items = await _itemRepository.GetByRDFId(feedRDFId)
+                        Channel = channel,
+                        Items = await _itemRepository.GetByRDFId(channel.Id)
                     };
 
                     _memoryCache.Set(key, rdfEntity);

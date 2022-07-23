@@ -14,30 +14,19 @@
 
             factory.ColumnDefs = [
                 {
-                    name: 'name'
+                    name: 'title'
                 },
                 {
-                    name: 'company',
+                    name: 'link',
                 },
                 {
-                    name: 'age',
-                    type: 'number'
+                    name: 'description'
                 },
                 {
-                    name: 'gender',
-                    cellFilter: 'mapGender',
-                    editDropdownValueLabel: 'gender',
-                    editDropdownOptionsArray: [
-                        { id: 0, gender: 'male' },
-                        { id: 1, gender: 'female' },
-                    ]
-                },
-                {
-                    name: 'registered',
-                    displayName: 'Registered',
+                    name: 'date',
+                    displayName: 'date',
                     type: 'date',
-                    cellFilter: 'date:"yyyy-MM-dd"',
-                    width: '20%'
+                    cellFilter: 'date:"yyyy-MM-dd"'
                 }
             ];
         }

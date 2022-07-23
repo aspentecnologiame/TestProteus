@@ -10,6 +10,6 @@ namespace MarcosCosta.Domain.Interfaces.Services
     public interface IFeedRDFService
     {
         Task<bool> ImportFeeds();
-        Task<RDFEntity> GetFeedRDFById(Guid feedRDFId);
+        Task<RDFEntity> GetFeeds();
     }
 }

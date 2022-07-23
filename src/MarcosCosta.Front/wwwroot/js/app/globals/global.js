@@ -4,14 +4,15 @@
 
     return global = {
         BaseUrl: '/',
-        BaseApiUrl: 'api/',
+        BaseApiUrl: 'https://localhost:7280/api/',
         CreateRequest: createRequest
     };
 
     function createRequest(url, verb, data) {
 
         var headers = {
-            'Content-type': 'application/json;charset=utf-8'
+            'Content-type': 'application/json;charset=utf-8',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         };
 
         if (data === undefined) {
@@ -29,7 +30,6 @@
                 url: global.BaseApiUrl + url,
                 method: verb,
                 data: {
-                    Token: localStorage.getItem('token'),
                     Data: data
                 },
                 headers: headers
