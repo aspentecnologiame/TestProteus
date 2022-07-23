@@ -10,5 +10,6 @@ namespace MarcosCosta.Domain.Options
     {
         public string FeedRDFUrl { get; set; }
         public string XMLFileName { get; set; }
+        public Authentication Authentication { get; set; }
     }
 }

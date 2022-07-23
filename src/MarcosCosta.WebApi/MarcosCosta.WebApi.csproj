@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
 	<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MarcosCosta.CrossCutting\MarcosCosta.CrossCutting.csproj" />
+    <ProjectReference Include="..\MarcosCosta.Domain\MarcosCosta.Domain.csproj" />
     <ProjectReference Include="..\MarcosCosta.Service\MarcosCosta.Service.csproj" />
   </ItemGroup>
 

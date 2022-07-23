@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using MarcosCosta.CrossCutting;
+using MarcosCosta.WebApi.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,13 +54,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = configuration["Authentication:Issuer"],
+            ValidIssuer = configuration["AppSettings:Authentication:Issuer"],
 
             ValidateAudience = true,
-            ValidAudience = configuration["Authentication:Audience"],
+            ValidAudience = configuration["AppSettings:Authentication:Audience"],
 
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Authentication:SecretKey"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AppSettings:Authentication:SecretKey"])),
 
             RequireExpirationTime = false,
             ValidateLifetime = false,
@@ -90,6 +91,15 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
+
+app.UseCors(x => x.SetIsOriginAllowed(origin => true)
+.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowCredentials());
+
+// custom jwt auth middleware
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
