@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarcosCosta.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace MarcosCosta.Domain.Interfaces.Services
     public interface IFeedRDFService
     {
         Task<bool> ImportFeeds();
+        Task<RDFEntity> GetFeedRDFById(Guid feedRDFId);
     }
 }

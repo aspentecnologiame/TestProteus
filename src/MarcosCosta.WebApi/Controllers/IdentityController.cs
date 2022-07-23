@@ -10,7 +10,7 @@ using System.Text;
 
 namespace MarcosCosta.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/identity")]
     [ApiController]
     public class IdentityController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace MarcosCosta.Api.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpGet("GetToken")]
+        [HttpGet("token")]
         [AllowAnonymous]
         public IActionResult GetToken()
         {

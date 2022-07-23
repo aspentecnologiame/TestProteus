@@ -27,24 +27,31 @@ namespace MarcosCosta.Service
             _memoryCache = memoryCache;
         }
 
-        public async Task<RDFEntity> GetFeedRDF(Guid feedRDFId)
+        public async Task<RDFEntity> GetFeedRDFById(Guid feedRDFId)
         {
-            var key = $"rdf-{feedRDFId}";
-
-            var rdfEntity = _memoryCache.Get<RDFEntity>(key);
-
-            if (rdfEntity == null)
+            try
             {
-                _ = new RDFEntity
+                var key = $"rdf-{feedRDFId}";
+
+                var rdfEntity = _memoryCache.Get<RDFEntity>(key);
+
+                if (rdfEntity == null)
                 {
-                    Channel = await _channelRepository.GetById(feedRDFId),
-                    Items = await _itemRepository.GetByRDFId(feedRDFId)
-                };
+                    rdfEntity = new RDFEntity
+                    {
+                        Channel = await _channelRepository.GetById(feedRDFId),
+                        Items = await _itemRepository.GetByRDFId(feedRDFId)
+                    };
 
-                _memoryCache.Set(key, rdfEntity);
+                    _memoryCache.Set(key, rdfEntity);
+                }
+
+                return await Task.FromResult(rdfEntity ?? new RDFEntity());
             }
-
-            return await Task.FromResult(rdfEntity ?? new RDFEntity());
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }   
         }
 
         public async Task<bool> ImportFeeds()

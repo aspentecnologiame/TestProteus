@@ -21,13 +21,13 @@ namespace MarcosCosta.Repository.Channel
         public async Task<ChannelEntity> Get()
         {
             using (var connection = new SqlConnection(_connectionString))
-                return await connection.QueryFirstOrDefaultAsync(ChannelRepositoryCommands.Get);
+                return await connection.QueryFirstOrDefaultAsync<ChannelEntity>(ChannelRepositoryCommands.Get);
         }
 
         public async Task<ChannelEntity> GetById(Guid feedRDFId)
         {
             using (var connection = new SqlConnection(_connectionString))
-                return await connection.QueryFirstOrDefaultAsync(ChannelRepositoryCommands.GetById, new { Id = feedRDFId});
+                return await connection.QueryFirstOrDefaultAsync<ChannelEntity>(ChannelRepositoryCommands.GetById, new { Id = feedRDFId});
         }
 
         public async Task<bool> Insert(ChannelEntity channelEntity)
