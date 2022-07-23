@@ -1,18 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MarcosCosta.Repository.Base
 {
     public abstract class BaseRepository
     {
-        public static string _connectionString;
-        public BaseRepository(IConfiguration configuration)
+        public readonly string _connectionString;
+        public BaseRepository(string connectionString)
         {
-            _connectionString = configuration.GetConnectionString("FeedRDF");
+            _connectionString = connectionString;
         }
     }
 }

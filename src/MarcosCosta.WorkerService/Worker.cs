@@ -38,7 +38,7 @@ namespace MarcosCosta.WorkerService
             serviceCollection.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Information));
 
             serviceCollection.AddSingleton<ImportFeedRDFJob>();
-            DIBootstrap.Configure(serviceCollection, Configuration);
+            serviceCollection.AddServices(Configuration);
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }
 

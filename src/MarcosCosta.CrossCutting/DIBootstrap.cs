@@ -15,12 +15,12 @@ namespace MarcosCosta.CrossCutting
 {
     public static class DIBootstrap
     {
-        public static void Configure(IServiceCollection services, IConfiguration configuration)
+        public static void AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IFeedRDFService, FeedRDFService>();
             services.AddSingleton<IFeedRDFRepository, FeedRDFRepository>();
-            services.AddSingleton<IChannelRepository, ChannelRepository>(provider => new ChannelRepository(configuration));
-            services.AddSingleton<IItemRepository, ItemRepository>(provider => new ItemRepository(configuration));
+            services.AddSingleton<IChannelRepository, ChannelRepository>(provider => new ChannelRepository(configuration.GetConnectionString("FeedRDF")));
+            services.AddSingleton<IItemRepository, ItemRepository>(provider => new ItemRepository(configuration.GetConnectionString("FeedRDF")));
 
             services.Configure<AppSettings>(options =>
             {

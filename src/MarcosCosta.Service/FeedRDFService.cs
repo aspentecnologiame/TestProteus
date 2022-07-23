@@ -3,8 +3,10 @@ using MarcosCosta.Domain.Entities;
 using MarcosCosta.Domain.Interfaces.Repositories;
 using MarcosCosta.Domain.Interfaces.Repositories.Externals;
 using MarcosCosta.Domain.Interfaces.Services;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using System.Text.Json;
 
 namespace MarcosCosta.Service
 {
@@ -14,13 +16,35 @@ namespace MarcosCosta.Service
         private readonly IChannelRepository _channelRepository;
         private readonly IItemRepository _itemRepository;
         private readonly ILogger<FeedRDFService> _logger;
+        private readonly IMemoryCache _memoryCache;
         public FeedRDFService(IFeedRDFRepository feedRDFRepository, IChannelRepository channelRepository,
-            IItemRepository itemRepository, ILogger<FeedRDFService> logger)
+            IItemRepository itemRepository, ILogger<FeedRDFService> logger, IMemoryCache memoryCache)
         {
             _feedRDFRepository = feedRDFRepository;
             _channelRepository = channelRepository;
             _itemRepository = itemRepository;
             _logger = logger;
+            _memoryCache = memoryCache;
+        }
+
+        public async Task<RDFEntity> GetFeedRDF(Guid feedRDFId)
+        {
+            var key = $"rdf-{feedRDFId}";
+
+            var rdfEntity = _memoryCache.Get<RDFEntity>(key);
+
+            if (rdfEntity == null)
+            {
+                _ = new RDFEntity
+                {
+                    Channel = await _channelRepository.GetById(feedRDFId),
+                    Items = await _itemRepository.GetByRDFId(feedRDFId)
+                };
+
+                _memoryCache.Set(key, rdfEntity);
+            }
+
+            return await Task.FromResult(rdfEntity ?? new RDFEntity());
         }
 
         public async Task<bool> ImportFeeds()

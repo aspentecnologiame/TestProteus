@@ -2,7 +2,6 @@
 using MarcosCosta.Domain.Entities;
 using MarcosCosta.Domain.Interfaces.Repositories;
 using MarcosCosta.Repository.Base;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +14,7 @@ namespace MarcosCosta.Repository.Item
 {
     public class ItemRepository : BaseRepository, IItemRepository
     {
-        public ItemRepository(IConfiguration configuration) : base(configuration)
+        public ItemRepository(string connectionString) : base(connectionString)
         {
         }
 
@@ -23,6 +22,12 @@ namespace MarcosCosta.Repository.Item
         {
             using (var connection = new SqlConnection(_connectionString))
                 return await connection.ExecuteAsync(ItemRepositoryCommands.ClearItem) == -1;
+        }
+
+        public async Task<IEnumerable<ItemEntity>> GetByRDFId(Guid RDFId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+                return await connection.QueryAsync<ItemEntity>(ItemRepositoryCommands.GetByRDFId, new { RDFId = RDFId });
         }
 
         public async Task<bool> Insert(IEnumerable<ItemEntity> itemsEntity)

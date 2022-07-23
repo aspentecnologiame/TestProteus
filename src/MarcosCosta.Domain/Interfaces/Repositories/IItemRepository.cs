@@ -11,5 +11,6 @@ namespace MarcosCosta.Domain.Interfaces.Repositories
     {
         Task<bool> ClearItem();
         Task<bool> Insert(IEnumerable<ItemEntity> itemsEntity);
+        Task<IEnumerable<ItemEntity>> GetByRDFId(Guid RDFId);
     }
 }

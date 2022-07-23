@@ -25,6 +25,7 @@ namespace MarcosCosta.Repository.Externals
             string strXml;
             MemoryStream memoryStream;
             var xmlFilePath = $"{Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%")}\\{_options.Value.XMLFileName}";
+            if (File.Exists(xmlFilePath)) File.Delete(xmlFilePath);
 
             var serializer = new XmlSerializer(typeof(RDF));
             var settings = new XmlWriterSettings { Indent = true, IndentChars = " ", NewLineOnAttributes = true, CloseOutput = true };

@@ -11,6 +11,7 @@ namespace MarcosCosta.Domain.Interfaces.Repositories
     {
         Task<bool> ClearChannel();
         Task<ChannelEntity> Get();
+        Task<ChannelEntity> GetById(Guid feedRDFId);
         Task<bool> Insert(ChannelEntity channelEntity);
     }
 }

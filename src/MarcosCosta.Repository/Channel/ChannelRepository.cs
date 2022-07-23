@@ -1,6 +1,5 @@
 ﻿using MarcosCosta.Domain.Entities;
 using MarcosCosta.Repository.Base;
-using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
 using MarcosCosta.Domain.Interfaces.Repositories;
@@ -9,7 +8,7 @@ namespace MarcosCosta.Repository.Channel
 {
     public class ChannelRepository : BaseRepository, IChannelRepository
     {
-        public ChannelRepository(IConfiguration configuration) : base(configuration)
+        public ChannelRepository(string connectionString) : base(connectionString)
         {
         }
 
@@ -23,6 +22,12 @@ namespace MarcosCosta.Repository.Channel
         {
             using (var connection = new SqlConnection(_connectionString))
                 return await connection.QueryFirstOrDefaultAsync(ChannelRepositoryCommands.Get);
+        }
+
+        public async Task<ChannelEntity> GetById(Guid feedRDFId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+                return await connection.QueryFirstOrDefaultAsync(ChannelRepositoryCommands.GetById, new { Id = feedRDFId});
         }
 
         public async Task<bool> Insert(ChannelEntity channelEntity)
