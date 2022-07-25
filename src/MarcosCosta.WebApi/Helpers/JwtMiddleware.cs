@@ -38,7 +38,8 @@ public class JwtMiddleware
 
             TokenValidationParameters parameters = new TokenValidationParameters()
             {
-                RequireExpirationTime = true,
+                RequireExpirationTime = false,
+                ValidateLifetime = false,
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 IssuerSigningKey = new SymmetricSecurityKey(key)
